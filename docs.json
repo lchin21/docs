@@ -1,0 +1,51 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "The Anime Community",
+  "theme": "maple",
+  "colors": {
+    "primary": "#ffffff",
+    "light": "#ffffff",
+    "dark": "#e0e0e0"
+  },
+  "favicon": "https://media.brand.dev/06ec2b22-aa25-456d-90aa-19d681c57517.png",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "expanded": true,
+            "pages": [
+              "get-started/introduction",
+              "get-started/quick-start"
+            ]
+          },
+          {
+            "group": "Comment Section",
+            "pages": [
+              "customize",
+              "comment-section/time-stamps"
+            ]
+          },
+          {
+            "group": "APIs",
+            "pages": []
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Join the Community",
+      "href": "https://theanimecommunity.com"
+    }
+  },
+  "footer": {
+    "socials": {
+      "website": "https://theanimecommunity.com"
+    }
+  }
+}

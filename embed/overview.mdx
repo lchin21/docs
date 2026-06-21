@@ -1,0 +1,44 @@
+---
+title: "Embedding The Anime Community Widget on Your Website"
+sidebarTitle: "Overview"
+description: "Explore the different ways to embed The Anime Community widget on your site, from a simple script tag to CMS-specific plugin integrations."
+---
+
+The Anime Community can be added to any website that supports HTML. You can embed it on a single page, across your entire site, or target specific sections — making it easy to bring anime discussions, polls, watchlists, and social tools to exactly where your audience already spends time.
+
+## Embed methods
+
+Choose the integration path that matches your platform. Every method uses the same underlying widget, so you get identical features regardless of how you install it.
+
+<CardGroup cols={2}>
+  <Card title="Script Tag" icon="code">
+    The universal option. Paste two lines of HTML into any site and the widget loads automatically. Works on any platform that lets you edit HTML — no dependencies, no build step.
+  </Card>
+  <Card title="WordPress Plugin" icon="wordpress">
+    Install The Anime Community plugin directly from the WordPress plugin directory. Enter your Site Key in Settings and place the widget anywhere with a shortcode.
+  </Card>
+  <Card title="Webflow" icon="window">
+    Add the script to your project's Footer Code in Project Settings, then drop an Embed element on any page with the widget container `<div>`. No external tools required.
+  </Card>
+  <Card title="Ghost" icon="ghost">
+    Inject the script site-wide via Settings → Code Injection, then add the widget container inside an HTML card on any post or page.
+  </Card>
+</CardGroup>
+
+## Choosing a placement
+
+You have two main placement strategies: **per-page** and **site-wide**.
+
+**Per-page placement** is the right choice when you want the community widget to appear only on specific content — for example, on individual episode recap pages or review articles. Place the `<div id="tac-widget"></div>` container only on the pages where the widget should appear, and the script will only activate where it finds that container.
+
+**Site-wide placement** is ideal if you want a persistent community presence — such as a global notification bell or a watchlist sidebar — on every page of your site. Add the script tag to your global header or footer template so it loads on every page, then control visibility per-page using the `data-features` attribute to surface only the relevant features in each context.
+
+<Tip>
+  Start with the script tag method to get the widget running quickly and confirm everything works with your Site Key. Once you're happy with the setup, you can migrate to a platform-specific integration like the WordPress plugin for a more managed experience.
+</Tip>
+
+## Next step
+
+<Card title="Installation" icon="circle-play" href="/embed/installation">
+  Follow the step-by-step installation guide for your platform — HTML, WordPress, Webflow, or Ghost.
+</Card>

@@ -1,0 +1,84 @@
+---
+title: "How The Anime Community Widget Loads and Syncs Data"
+sidebarTitle: "How It Works"
+description: "Learn how The Anime Community widget loads on your site, how visitors sign in, and how posts, polls, and watchlists stay synced in real time."
+---
+
+This page explains how The Anime Community widget works from your perspective as a site owner — how it loads onto your page, how your visitors sign in and interact with it, and how community data flows in real time. You don't need to understand any of this to get the widget running, but knowing how the pieces fit together helps you make informed decisions about placement, configuration, and performance.
+
+## The Embed Script
+
+<Note>
+  No community data — posts, votes, watchlists, user accounts, or member activity — is ever stored on your own server. Everything is managed entirely by The Anime Community's infrastructure. Your site only serves the two HTML snippets that tell the widget where and how to load.
+</Note>
+
+When a visitor loads a page on your site, their browser encounters the `<script>` tag you placed before `</body>`:
+
+```html
+<script
+  src="https://cdn.theanimecommunity.com/widget.js"
+  data-site-key="tac_site_abc123xyz"
+  async
+></script>
+```
+
+The browser fetches `widget.js` from The Anime Community's global CDN. This file is a self-contained JavaScript bundle that includes everything needed to render the community interface — UI components, authentication logic, real-time connection handling, and API communication. Once downloaded, the script scans the page for a `<div id="tac-widget"></div>` element and mounts the full widget inside it.
+
+Because no server-side rendering is involved, your own web server or CMS never needs to know the widget exists. The entire widget lifecycle — loading, rendering, updating — happens client-side in the visitor's browser.
+
+## Site Keys
+
+Every site you register in the dashboard receives a unique **Site Key** (for example, `tac_site_abc123xyz`). This key is the central identifier that scopes all community data to your site specifically.
+
+When the widget initializes, it reads the Site Key from the `data-site-key` attribute and includes it in every API request it makes to The Anime Community's servers. This tells the servers which site's posts, polls, and watchlist entries to load and where to save new content. It also validates that the request is coming from a registered domain, so the key cannot be used to write data from an unauthorized site.
+
+<Warning>
+  Your Site Key is safe to include in client-side HTML — it's a site identifier, not a secret credential. However, only registered domains can use a given key to write data. You manage your allowed domains from the **Sites** section of your dashboard.
+</Warning>
+
+## User Accounts
+
+Visitors interact with the widget using their **Anime Community account** — the same account they may already use on any other site that embeds the widget. This federated identity model means:
+
+- Visitors don't create a new account on your site — they use one universal Anime Community login
+- Their watchlist, comment history, and notification preferences follow them across every site that uses the widget
+- You never handle user credentials, sessions, or authentication tokens on your own server
+
+When a visitor clicks to join a discussion or cast a vote, the widget opens a lightweight sign-in flow entirely within the widget panel. Authentication happens directly between the visitor's browser and The Anime Community's auth servers using secure, short-lived tokens. Your site is never in the middle of that exchange.
+
+<Tip>
+  Visitors who already have an Anime Community account from another site will find themselves immediately at home on your site — their display name, avatar, and watchlist carry over automatically.
+</Tip>
+
+## Data Ownership
+
+Even though The Anime Community stores and serves all community data, that data is associated with your Site Key and is logically yours. From your dashboard you can:
+
+- **Read** all posts, replies, and poll responses submitted on your site
+- **Moderate** content by reviewing flagged posts, removing individual comments, or banning users from your site's community
+- **Export** your site's community data at any time in standard JSON format
+- **Delete** your site and all associated data permanently if you ever choose to leave the platform
+
+Your moderator controls apply only to your own site's community — you cannot affect content on other sites, and other site owners cannot affect yours.
+
+## Real-Time Updates
+
+The widget maintains a persistent **WebSocket connection** to The Anime Community's real-time infrastructure while it's open in a visitor's browser. This connection powers the live features your visitors experience:
+
+- **New posts and replies** appear in the discussion thread instantly, without a page refresh
+- **Poll results** update in real time as other visitors cast votes
+- **Notifications** are delivered immediately when a visitor receives a reply or mention
+- **Watchlist changes** sync across tabs and devices without delay
+
+The WebSocket connection is established after the widget finishes loading and is automatically re-established if the visitor's network briefly drops. If a visitor's browser doesn't support WebSockets (an increasingly rare edge case), the widget falls back to periodic polling to keep data reasonably current.
+
+## Performance
+
+The widget is designed to have zero impact on your page's critical render path:
+
+- The `async` attribute on the `<script>` tag tells the browser to download `widget.js` in parallel with parsing the rest of your HTML, without pausing to execute it
+- The widget mounts only after the page's own content has finished loading, so your text, images, and layout are always visible first
+- The CDN serves `widget.js` from edge nodes close to your visitors globally, minimizing download latency
+- The widget bundle is aggressively cached — returning visitors load the script from their local browser cache on subsequent visits
+
+The result is that adding The Anime Community widget to a page does not affect your Largest Contentful Paint (LCP), First Input Delay (FID), or Cumulative Layout Shift (CLS) scores in any meaningful way.

@@ -1,0 +1,58 @@
+---
+title: "customize"
+---
+
+To customize the comment section, modify the `window.theAnimeCommunityConfig` object.
+
+All values should be strings.
+
+## Changing Color Scheme
+
+Only valid CSS color representations are supported.
+
+The following attributes can be included to alter the color of the corresponding UI elements. If not included, they will default to a dark theme.
+
+`primaryColor`: Sets color of buttons and sort by drop down menu.
+
+`backgroundColor`: Sets the background color.
+
+`dropDownTextColor`: Sets the text color of the drop down menu options.
+
+`strongTextColor`: Sets the color of usernames and the THEANIMECOMMUNITY logo at the bottom.
+
+`primaryTextColor`: Sets the font color for main comment text and text in editors.
+
+`secondaryTextColor`: Sets the color of comment count, sort by, and time stamp.
+
+`iconColor`: Sets the color of the like, dislike, and reply icons.
+
+`accentColor`: Sets the color of the the various lines.
+
+## Remove Border
+
+`removeBorder`: Any truthy value, i.e. "true" removes outermost border.
+
+## Remove Padding
+
+`removePadding`: Any truthy value, i.e. "true" removes the outermost padding from the comment section.
+
+## Example
+
+```text
+window.theAnimeCommunityConfig = {
+    MAL_ID: '1',
+    episodeChapterNumber: '1',
+    removeBorder: "true",
+    removePadding: "true",
+    colorScheme: {
+        primaryColor: "darkblue",
+        backgroundColor: "blue",
+        dropDownTextColor: "rgb(255, 0, 0)",
+        strongTextColor: "#FFFFFF",
+        primaryTextColor: "hsl(210, 100%, 50%)",
+        secondaryTextColor: "red",
+        iconColor: "pink",
+        accentColor: "red"
+    }
+}
+```

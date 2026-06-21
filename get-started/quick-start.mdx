@@ -1,0 +1,76 @@
+---
+title: "Quick Start"
+---
+
+## Embed Code
+
+Place this div where the comment section should be.
+
+```javascript
+<div id="anime-community-comment-section"></div>
+```
+
+Execute this code to populate the comment section.
+
+```javascript
+<script>
+    window.theAnimeCommunityConfig = {
+        MAL_ID: 'EXAMPLE',
+        AniList_ID: 'EXAMPLE',
+        episodeChapterNumber: 'EXAMPLE',
+        mediaType: 'EXAMPLE'
+    };
+</script>
+
+<script 
+    src="https://theanimecommunity.com/embed.js"
+    id="anime-community-script"
+    defer
+></script>
+```
+
+## React Code
+
+Place this div where the comment section should be.
+
+```javascript
+<div id={"anime-community-comment-section"}></div>
+```
+
+Include this code to populate the comment section.
+
+```javascript
+useEffect(() => {
+    try {
+        // IMPORTANT: replace EXAMPLE values
+        window.theAnimeCommunityConfig = {
+                MAL_ID: 'EXAMPLE',
+                AniList_ID: 'EXAMPLE',
+                episodeChapterNumber: 'EXAMPLE',
+                mediaType: 'EXAMPLE'
+        };
+        
+        const script = document.createElement("script");
+        script.src = \`https://theanimecommunity.com/embed.js\`;
+        
+        script.id = "anime-community-script";
+        script.defer=true;
+        
+        document.getElementById("anime-community-comment-section").appendChild(script);
+    } catch (e) {
+        console.log(e)
+    }
+}, []);
+```
+
+## Configuration Variables
+
+Minimally, the MyAnimeList/AniList ID and episode series must be included in the configuration object. mediaType defaults to "anime."
+
+Example"
+
+```javascript
+MAL_ID="1"
+episodeChapterNumber="1"
+mediaType="anime" // or "manga"
+```

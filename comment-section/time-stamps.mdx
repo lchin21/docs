@@ -1,0 +1,24 @@
+---
+title: "Time Stamps"
+---
+
+When a time stamp is clicked in a comment, the comment section iframe will post a message to the parent window.
+
+The message will have the type "TAC-TIMESTAMP-CLICK" and a "time" attribute with an integer value representing the total number of seconds.
+
+A listener such as the one below can be used to handle the received message.
+
+```javascript
+window.addEventListener('message', function(event) {
+    console.log(event.data);
+});
+```
+
+The following is what is printed.
+
+```javascript
+{
+  "type": "TAC-TIMESTAMP-CLICK",
+  "time": 600
+}
+```
